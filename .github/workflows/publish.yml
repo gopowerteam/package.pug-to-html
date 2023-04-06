@@ -60,4 +60,4 @@ jobs:
     steps:
       - name: Sync Package
         run: |
-          curl -X PUT "https://registry-direct.npmmirror.com/@gopowerteam/${package-name}/sync"
+          curl -X PUT "https://registry-direct.npmmirror.com/@gopowerteam/pug-to-html/sync"

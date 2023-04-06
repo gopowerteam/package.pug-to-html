@@ -6,5 +6,4 @@ export default <Options>{
   platform: 'node',
   target: 'node16',
   format: ['cjs'],
-  dts: true,
 }

@@ -1,0 +1,40 @@
+{
+  "name": "@gopowerteam/pug-to-html",
+  "version": "0.0.1",
+  "description": "pug to html ",
+  "author": "zhuchentong <2037630@163.com>",
+  "homepage": "https://github.com/gopowerteam/package.pug-to-html#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "bin": {
+    "pug-to-html": "./dist/index.js"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopowerteam/package.pug-to-html.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gopowerteam/package.pug-to-html/issues"
+  },
+  "devDependencies": {
+    "@types/pug": "^2.0.6",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "chalk": "4",
+    "jade": "^1.11.0",
+    "pug": "^3.0.2",
+    "pug-walk": "^2.0.0"
+  }
+}

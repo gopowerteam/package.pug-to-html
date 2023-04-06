@@ -4,7 +4,7 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
-    "dev": "lerna run dev --scope playground --include-dependencies",
+    "dev": "lerna watch -- lerna run build --scope=$LERNA_PACKAGE_NAME",
     "exec": "node scripts/exec.js",
     "lint": "lerna run lint",
     "publish:patch": "lerna publish patch --no-private --yes",

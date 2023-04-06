@@ -4,5 +4,6 @@ module.exports = {
   extends: ['@gopowerteam/eslint-config'],
   rules: {
     // Your custom rules
+    'no-console': ['off'],
   },
 }
