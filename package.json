@@ -1,0 +1,41 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "dev": "lerna run dev --scope playground --include-dependencies",
+    "exec": "node scripts/exec.js",
+    "lint": "lerna run lint",
+    "publish:patch": "lerna publish patch --no-private --yes",
+    "publish:minor": "lerna publish minor --no-private --yes",
+    "publish:major": "lerna publish major --no-private --yes",
+    "release": "npm run build && npm run publish:patch",
+    "commit": "git-cz",
+    "lint:eslint": "eslint \"src/**/*.{vue,ts,tsx}\" --fix",
+    "precommit": "chmod +x .husky/*",
+    "clean": "lerna clean"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "@gopowerteam/eslint-config": "latest",
+    "@types/node": "^18.15.11",
+    "commitizen": "4.3.0",
+    "cz-customizable": "7.0.0",
+    "husky": "8.0.2",
+    "lerna": "^6.6.1",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.4"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
+}
