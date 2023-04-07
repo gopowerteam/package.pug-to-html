@@ -1,13 +1,13 @@
 {
   "name": "playground",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "exec": "pug-to-html ."
   },
   "dependencies": {
-    "@gopowerteam/pug-to-html":"workspace:*"
+    "@gopowerteam/pug-to-html": "workspace:*"
   },
   "author": "",
   "license": "ISC"
