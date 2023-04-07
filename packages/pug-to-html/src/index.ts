@@ -4,38 +4,65 @@
 
 import path from 'node:path'
 import fs from 'node:fs'
-
 import chalk from 'chalk'
 import VueEngine from './engines/vue.engine'
 import PugEngine from './engines/pug.engine'
 import JadeEngine from './engines/jade.engine'
 
 const args = process.argv
-const fileName = args[args.length - 1]
-const filePath = path.join(process.cwd(), fileName)
-let engine
+const targetPath = path.join(process.cwd(), args[args.length - 1])
 
-const _throwAndExit = (msg: string) => {
+const showError = (msg: string) => {
   console.log(chalk.red(msg))
-  process.exit(1)
 }
 
-if (!fs.existsSync(filePath)) _throwAndExit(`${fileName} was not found`)
+function createEngine(filePath: string) {
+  switch (true) {
+    case filePath.endsWith('.vue'):
+      return VueEngine(filePath)
+    case filePath.endsWith('.pug'):
+      return PugEngine(filePath)
+    case filePath.endsWith('.jade'):
+      return JadeEngine(filePath)
+  }
+}
 
-if (filePath.includes('.vue')) engine = VueEngine(filePath)
-else if (filePath.includes('.pug')) engine = PugEngine(filePath)
-else if (filePath.includes('.jade')) engine = JadeEngine(filePath)
+/**
+ * 格式化文件
+ * @param filePath
+ * @returns
+ */
+function formatFile(filePath: string) {
+  const engine = createEngine(filePath)
 
-else _throwAndExit(`${fileName} was not found`)
+  if (!engine) return
 
-if (engine) {
+  // 排出非pug模板
   if (engine?.name === 'vue' && 'hasSupportedVueTemplate' in engine && !engine?.hasSupportedVueTemplate())
-    _throwAndExit(`${fileName} does not have a pug template`)
+    return
 
   const compiledResult = engine?.convertTemplate()
-  console.log(chalk.green(compiledResult))
+  console.log(chalk.green.bold('格式化完成: '), chalk.green(filePath))
 
   engine.saveToFile(compiledResult)
 }
 
-process.exit(0)
+function format(targetPath: string) {
+  if (!fs.existsSync(targetPath))
+    return showError(`${targetPath} was not found`)
+
+  const stat = fs.statSync(targetPath)
+  switch (true) {
+    // 处理目录
+    case stat.isDirectory() && !['node_modules'].includes(path.basename(targetPath)):
+      fs.readdirSync(targetPath)
+        .forEach(x => format(path.join(targetPath, x)))
+      break
+    // 处理文件
+    case stat.isFile() && ['.vue', '.jade', '.pug'].includes(path.extname(targetPath)):
+      formatFile(targetPath)
+      break
+  }
+}
+
+format(targetPath)

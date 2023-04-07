@@ -1,43 +1,49 @@
-<template>
-  <a-card :title="title">
-    <template #extra>
-      <a-button :disabled="!model.users.length" type="primary" @click="onSubmit">提交</a-button>
-    </template>
-    <div class="flex flex-col space-x-5 max-h-full overflow-auto">
-      <div class="flex flex-row">
-        <div class="flex flex-col w-1/2">
-          <a-card class="flex flex-col flex-auto" :body-style="bodyStyle" title="待选">
-            <template #extra>
-              <a-button :disabled="isSingle" type="primary" @click="onCheckChange">批量添加</a-button>
-            </template>
-            <div class="flex flex-row mb-1">
-              <a-input v-model="searchName" placeholder="请输入员工姓名"></a-input>
-              <div class="ml-1"></div>
-              <a-input v-model="searchJobNumber" placeholder="请输入员工工号"></a-input>
-            </div>
-            <div class="flex flex-row">
-              <a-tree-select v-model="model.department" :data="departments" :dropdown-style="{ maxHeight: "400px", minWidth: "200px", overflow: "auto" }" :field-names="{ key: "value", title: "label" }" :label-in-value="true" placeholder="请选择部门" :popup-container="getParent()" :replace-fields="{ title: "name", key: "deptId" }" style="width: 300px" :style="{ flex: "auto", display: "flex" }" @change="onDepartmentChange"></a-tree-select>
-              <div class="ml-1"></div>
-              <a-button type="primary" @click="getSearchData">搜索</a-button>
-            </div>
-            <div class="mt-5"></div>
-            <data-table ref="table1" v-model:checkbox="checkData" :columns="columns" :load-data="getEmployeeByNameJobNumber" :pagination="pageService" row-key="userId" :scroll-height="400" selection="checkbox"></data-table>
-          </a-card>
-        </div>
-        <a-card class="h-full flex-1" title="已选">
-          <div class="flex" style="padding-bottom: 8px">
-            <div class="flex">选择人数: {{ model.users.length }}</div>
-          </div>
-          <a-table :columns="rightColumns" :data="model.users">
-            <template #action="{ record }">
-              <a-button type="text" @click="onRemoveAdmin(record)">删除</a-button>
-            </template>
-          </a-table>
-        </a-card>
-      </div>
-    </div>
-  </a-card>
-</template>
+<template lang="pug">
+  a-card(:title="title")
+    template(#extra)
+      a-button(:disabled="!model.users.length" type="primary" @click="onSubmit") 提交
+    .flex.flex-col.space-x-5.max-h-full.overflow-auto
+      .flex.flex-row
+        .flex.flex-col(class="w-1/2")
+          a-card.flex.flex-col.flex-auto(:body-style="bodyStyle" title="待选")
+            template(#extra)
+              a-button(:disabled="isSingle" type="primary" @click="onCheckChange") 批量添加
+            .flex.flex-row.mb-1
+              a-input(v-model="searchName" placeholder="请输入员工姓名")
+              .ml-1
+              a-input(v-model="searchJobNumber" placeholder="请输入员工工号")
+            .flex.flex-row
+              a-tree-select(
+                v-model="model.department"
+                :data="departments"
+                :dropdown-style='{ maxHeight: "400px", minWidth: "200px", overflow: "auto" }'
+                :field-names='{ key: "value", title: "label" }'
+                :label-in-value="true"
+                placeholder="请选择部门"
+                :popup-container="getParent()"
+                :replace-fields='{ title: "name", key: "deptId" }'
+                style="width: 300px"
+                :style='{ flex: "auto", display: "flex" }'
+                @change="onDepartmentChange")
+              .ml-1
+              a-button(type="primary" @click="getSearchData") 搜索
+            .mt-5
+            data-table(
+              ref="table1"
+              v-model:checkbox="checkData"
+              :columns="columns"
+              :load-data="getEmployeeByNameJobNumber"
+              :pagination="pageService"
+              row-key="userId"
+              :scroll-height="400"
+              selection="checkbox")
+        a-card.h-full.flex-1(title="已选")
+          .flex(style="padding-bottom: 8px")
+            .flex 选择人数: {{ model.users.length }}
+          a-table(:columns="rightColumns" :data="model.users")
+            template(#action="{ record }")
+              a-button(type="text" @click="onRemoveAdmin(record)") 删除
+  </template>
 
   <style scoped></style>
 
