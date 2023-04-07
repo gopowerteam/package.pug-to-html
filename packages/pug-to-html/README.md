@@ -5,7 +5,5 @@
 ## Usage
 
 ```
-const pugToHtml = require('pug-to-html');
-
-// TODO: DEMONSTRATE API
+npx @gopowerteam/pug-to-html {filename}|{dirname}
 ```

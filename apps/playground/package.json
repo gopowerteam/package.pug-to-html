@@ -1,8 +1,9 @@
 {
   "name": "playground",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "exec": "pug-to-html ."
   },

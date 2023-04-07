@@ -11,7 +11,7 @@
             .flex.flex-row.mb-1
               a-input(v-model="searchName" placeholder="请输入员工姓名")
               .ml-1
-              a-input(v-model="searchJobNumber" placeholder="请输入员工工号")
+              a-input(v-model="searchJobNumber" placeholder="请输入员工工号" :show='test==="GO"')
             .flex.flex-row
               a-tree-select(
                 v-model="model.department"

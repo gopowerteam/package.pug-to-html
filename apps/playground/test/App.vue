@@ -16,7 +16,7 @@
               <a-input v-model="searchJobNumber" placeholder="请输入员工工号"></a-input>
             </div>
             <div class="flex flex-row">
-              <a-tree-select v-model="model.department" :data="departments" :dropdown-style="{ maxHeight: "400px", minWidth: "200px", overflow: "auto" }" :field-names="{ key: "value", title: "label" }" :label-in-value="true" placeholder="请选择部门" :popup-container="getParent()" :replace-fields="{ title: "name", key: "deptId" }" style="width: 300px" :style="{ flex: "auto", display: "flex" }" @change="onDepartmentChange"></a-tree-select>
+              <a-tree-select v-model="model.department" :data="departments" :dropdown-style="{ maxHeight: '400px', minWidth: '200px', overflow: 'auto' }" :field-names="{ key: 'value', title: 'label' }" :label-in-value="true" placeholder="请选择部门" :popup-container="getParent()" :replace-fields="{ title: 'name', key: 'deptId' }" style="width: 300px" :style="{ flex: 'auto', display: 'flex' }" @change="onDepartmentChange"></a-tree-select>
               <div class="ml-1"></div>
               <a-button type="primary" @click="getSearchData">搜索</a-button>
             </div>
