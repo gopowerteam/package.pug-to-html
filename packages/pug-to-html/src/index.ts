@@ -16,6 +16,11 @@ const showError = (msg: string) => {
   console.log(chalk.red(msg))
 }
 
+/**
+ * 创建引擎
+ * @param filePath
+ * @returns
+ */
 function createEngine(filePath: string) {
   switch (true) {
     case filePath.endsWith('.vue'):

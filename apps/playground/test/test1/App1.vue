@@ -7,7 +7,7 @@
         .flex.flex-col(class="w-1/2")
           a-card.flex.flex-col.flex-auto(:body-style="bodyStyle" title="待选")
             template(#extra)
-              a-button(:disabled="isSingle" type="primary" @click="onCheckChange") 批量添加
+              a-button(:disabled='isSingle==="asdasd"?"a":"b"' type="primary" @click="onCheckChange") 批量添加
             .flex.flex-row.mb-1
               a-input(v-model="searchName" placeholder="请输入员工姓名")
               .ml-1
